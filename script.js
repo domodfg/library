@@ -20,6 +20,12 @@ function book(title, author, pages, read) {
   this.read = read;
 }
 
+book.prototype.toggle = function () {
+  if (this.read == "Finished") {
+    this.read = "Unfinished";
+  } else this.read = "Finished";
+};
+
 function addBooktoLibrary() {
   let title = document.querySelector("#title").value;
   let author = document.querySelector("#author").value;
@@ -57,6 +63,7 @@ function displayBook() {
     bookCard.setAttribute("id", i);
     bookCard.classList.add("card");
     removeButton.setAttribute("id", i);
+    readButton.setAttribute("id", i);
   }
   removeButton.textContent = "Remove";
   readButton.textContent = "Finished";
@@ -64,6 +71,10 @@ function displayBook() {
     const bookId = document.getElementById(removeButton.id);
     myLibrary.splice(removeButton.id, 1);
     display.removeChild(bookId);
+  });
+  readButton.addEventListener("click", () => {
+    myLibrary[readButton.id].toggle();
+    bookRead.textContent = myLibrary[readButton.id].read;
   });
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookAuthor);
