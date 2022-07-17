@@ -8,10 +8,11 @@ function book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function () {
-    console.log(title, author, pages, read);
-  };
 }
+
+book.prototype.info = function () {
+  return this.title + "  " + this.author +  "  " + this.pages + "  " + this.read;
+};
 
 function addBooktoLibrary() {
   let title = document.querySelector("#title").value;
@@ -20,7 +21,6 @@ function addBooktoLibrary() {
   let read = document.querySelector("#read").value;
   const libraryBook = new book(title, author, pages, read);
   myLibrary.push(libraryBook);
-  console.log(myLibrary);
 }
 
 const submit = document.querySelector(".submit");
@@ -35,10 +35,22 @@ submit.addEventListener("click", () => {
 });
 
 function displayBook() {
-  const bookDisplay = document.createElement("div");
-  for (item of myLibrary) {
-    bookDisplay.textContent =
-      item.title + "  " + item.author + "  " + item.pages + "  " + item.read;
+  const bookCard= document.createElement("div");
+  const bookTitle=document.createElement("div");
+  const bookAuthor=document.createElement("div");
+  const bookPages=document.createElement("div");
+  const bookRead=document.createElement("div");
+  for (const [i, item] of myLibrary.entries()) {
+    bookTitle.textContent = item.title;
+    bookAuthor.textContent = item.author;
+    bookPages.textContent = item.pages;
+    bookRead.textContent = item.read;
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(bookRead);
+    bookCard.setAttribute('id', i);
+    bookCard.classList.add('card');
   }
-  display.appendChild(bookDisplay);
+  display.appendChild(bookCard);
 }
