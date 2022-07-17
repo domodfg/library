@@ -2,11 +2,16 @@ let myLibrary = [];
 const form = document.querySelector(".userInput");
 const inputs = document.querySelectorAll("input");
 const display = document.querySelector(".display");
-const displayForm= document.querySelector('.addBook');
+const displayForm = document.querySelector(".addBook");
+const undisplayForm = document.querySelector(".cancel");
 
-displayForm.addEventListener('click', ()=> {
-    form.classList.add('active');
-})
+undisplayForm.addEventListener("click", () => {
+  form.classList.remove("active");
+});
+
+displayForm.addEventListener("click", () => {
+  form.classList.add("active");
+});
 
 function book(title, author, pages, read) {
   this.title = title;
@@ -30,29 +35,41 @@ submit.addEventListener("click", () => {
     addBooktoLibrary();
     displayBook();
     inputs.forEach((input) => (input.value = ""));
-    form.classList.remove('active');
+    form.classList.remove("active");
   } else {
     form.reportValidity();
   }
 });
 
 function displayBook() {
-  const bookCard= document.createElement("div");
-  const bookTitle=document.createElement("div");
-  const bookAuthor=document.createElement("div");
-  const bookPages=document.createElement("div");
-  const bookRead=document.createElement("div");
+  const bookCard = document.createElement("div");
+  const bookTitle = document.createElement("div");
+  const bookAuthor = document.createElement("div");
+  const bookPages = document.createElement("div");
+  const bookRead = document.createElement("div");
+  const removeButton = document.createElement("button");
+  const readButton = document.createElement("button");
   for (const [i, item] of myLibrary.entries()) {
     bookTitle.textContent = item.title;
     bookAuthor.textContent = item.author;
     bookPages.textContent = item.pages;
     bookRead.textContent = item.read;
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-    bookCard.appendChild(bookRead);
-    bookCard.setAttribute('id', i);
-    bookCard.classList.add('card');
+    bookCard.setAttribute("id", i);
+    bookCard.classList.add("card");
+    removeButton.setAttribute("id", i);
   }
+  removeButton.textContent = "Remove";
+  readButton.textContent = "Finished";
+  removeButton.addEventListener("click", () => {
+    const bookId = document.getElementById(removeButton.id);
+    myLibrary.splice(removeButton.id, 1);
+    display.removeChild(bookId);
+  });
+  bookCard.appendChild(bookTitle);
+  bookCard.appendChild(bookAuthor);
+  bookCard.appendChild(bookPages);
+  bookCard.appendChild(bookRead);
+  bookCard.appendChild(removeButton);
+  bookCard.appendChild(readButton);
   display.appendChild(bookCard);
 }
