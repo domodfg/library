@@ -63,14 +63,17 @@ function displayBook() {
     bookCard.setAttribute("id", i);
     bookCard.classList.add("card");
     removeButton.setAttribute("id", i);
+    removeButton.classList.add("remove");
     readButton.setAttribute("id", i);
+    readButton.classList.add("read");
   }
   removeButton.textContent = "Remove";
-  readButton.textContent = "Finished";
+  readButton.textContent = "Read";
   removeButton.addEventListener("click", () => {
     const bookId = document.getElementById(removeButton.id);
     myLibrary.splice(removeButton.id, 1);
     display.removeChild(bookId);
+    updateID();
   });
   readButton.addEventListener("click", () => {
     myLibrary[readButton.id].toggle();
@@ -83,4 +86,20 @@ function displayBook() {
   bookCard.appendChild(removeButton);
   bookCard.appendChild(readButton);
   display.appendChild(bookCard);
+}
+
+function updateID () {
+    // This portion is code is for updating the ID of each cards after removals of cards such that the remove and toggle can work properly
+    const allCard = document.querySelectorAll(".card");
+    const allRemoveButton = document.querySelectorAll(".remove");
+    const allReadButton = document.querySelectorAll(".read");
+    allCard.forEach((card, i) => {
+      card.id = i;
+    });
+    allRemoveButton.forEach((removeButton, i) => {
+      removeButton.id = i;
+    });
+    allReadButton.forEach((readButton, i) => {
+      readButton.id = i;
+    });
 }
