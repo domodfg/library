@@ -5,8 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <form action="" class="userInput">
+        <label for="title">Title</label>
+        <input name= "title" type="text" id="title">
+        <label for="author">Author</label>
+        <input name= "author" type="text" id="author">
+        <label for="pages">Pages</label>
+        <input name= "pages" type="number" id="pages">
+        <label for="read">Read?</label>
+        <select name="read" id="read">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
