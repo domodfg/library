@@ -11,17 +11,17 @@
 <body>
     <form action="" class="userInput">
         <label for="title">Title</label>
-        <input name= "title" type="text" id="title">
+        <input name= "title" type="text" id="title" required>
         <label for="author">Author</label>
-        <input name= "author" type="text" id="author">
+        <input name= "author" type="text" id="author" required>
         <label for="pages">Pages</label>
-        <input name= "pages" type="number" id="pages">
+        <input name= "pages" type="number" id="pages" required>
         <label for="read">Read?</label>
         <select name="read" id="read">
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="button" class="submit">Submit</button>
     </form>
 </body>
 </html>
