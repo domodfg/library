@@ -1,6 +1,7 @@
 let myLibrary = [];
 const form = document.querySelector(".userInput");
-const inputs=document.querySelectorAll('input');
+const inputs = document.querySelectorAll("input");
+const display = document.querySelector(".display");
 
 function book(title, author, pages, read) {
   this.title = title;
@@ -26,8 +27,18 @@ const submit = document.querySelector(".submit");
 submit.addEventListener("click", () => {
   if (form.checkValidity()) {
     addBooktoLibrary();
-    inputs.forEach((input) => input.value='')
+    displayBook();
+    inputs.forEach((input) => (input.value = ""));
   } else {
     form.reportValidity();
   }
 });
+
+function displayBook() {
+  const bookDisplay = document.createElement("div");
+  for (item of myLibrary) {
+    bookDisplay.textContent =
+      item.title + "  " + item.author + "  " + item.pages + "  " + item.read;
+  }
+  display.appendChild(bookDisplay);
+}
