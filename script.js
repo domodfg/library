@@ -2,6 +2,11 @@ let myLibrary = [];
 const form = document.querySelector(".userInput");
 const inputs = document.querySelectorAll("input");
 const display = document.querySelector(".display");
+const displayForm= document.querySelector('.addBook');
+
+displayForm.addEventListener('click', ()=> {
+    form.classList.add('active');
+})
 
 function book(title, author, pages, read) {
   this.title = title;
@@ -9,10 +14,6 @@ function book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-
-book.prototype.info = function () {
-  return this.title + "  " + this.author +  "  " + this.pages + "  " + this.read;
-};
 
 function addBooktoLibrary() {
   let title = document.querySelector("#title").value;
@@ -29,6 +30,7 @@ submit.addEventListener("click", () => {
     addBooktoLibrary();
     displayBook();
     inputs.forEach((input) => (input.value = ""));
+    form.classList.remove('active');
   } else {
     form.reportValidity();
   }
