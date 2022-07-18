@@ -55,10 +55,11 @@ function displayBook() {
   const bookRead = document.createElement("div");
   const removeButton = document.createElement("button");
   const readButton = document.createElement("button");
+
   for (const [i, item] of myLibrary.entries()) {
     bookTitle.textContent = item.title;
     bookAuthor.textContent = item.author;
-    bookPages.textContent = item.pages;
+    bookPages.textContent = 'pages: ' + item.pages;
     bookRead.textContent = item.read;
     bookCard.setAttribute("id", i);
     bookCard.classList.add("card");
@@ -67,23 +68,27 @@ function displayBook() {
     readButton.setAttribute("id", i);
     readButton.classList.add("read");
   }
+
   removeButton.textContent = "Remove";
   readButton.textContent = "Read";
+
   removeButton.addEventListener("click", () => {
     const bookId = document.getElementById(removeButton.id);
     myLibrary.splice(removeButton.id, 1);
     display.removeChild(bookId);
     updateID();
   });
+
   readButton.addEventListener("click", () => {
     myLibrary[readButton.id].toggle();
     bookRead.textContent = myLibrary[readButton.id].read;
   });
+  
+  bookCard.appendChild(removeButton);
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookAuthor);
   bookCard.appendChild(bookPages);
   bookCard.appendChild(bookRead);
-  bookCard.appendChild(removeButton);
   bookCard.appendChild(readButton);
   display.appendChild(bookCard);
 }

@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
-    <button class="addBook">New Book</button>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header.left">
+        <h1>Pog Library</h1>
+      </div>
+      <button class="addBook">New Book</button>
+    </div>
     <form action="" class="userInput">
-        <label for="title">Title</label>
-        <input name= "title" type="text" id="title" required>
-        <label for="author">Author</label>
-        <input name= "author" type="text" id="author" required>
-        <label for="pages">Pages</label>
-        <input name= "pages" type="number" id="pages" required>
-        <label for="read">Read?</label>
-        <select name="read" id="read">
-            <option value="Finished">Finished</option>
-            <option value="Unfinished">Unfinished</option>
-        </select>
-        <button type="button" class="submit">Submit</button>
-        <button type="button" class="cancel">Cancel</button>
+      <button type="button" class="cancel">Cancel</button>
+      <label for="title">Title</label>
+      <input name="title" type="text" id="title" required />
+      <label for="author">Author</label>
+      <input name="author" type="text" id="author" required />
+      <label for="pages">Pages</label>
+      <input name="pages" type="number" id="pages" required />
+      <label for="read">Read?</label>
+      <select name="read" id="read">
+        <option value="Finished">Finished</option>
+        <option value="Unfinished">Unfinished</option>
+      </select>
+      <button type="button" class="submit">Submit</button>
     </form>
     <div class="display"></div>
-</body>
+  </body>
 </html>
